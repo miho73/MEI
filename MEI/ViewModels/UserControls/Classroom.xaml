@@ -1,0 +1,57 @@
+﻿<UserControl
+    x:Class="MEI.UI.Classroom"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MEI.UI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignWidth="800" d:DesignHeight="70"  Width="800" Height="70">
+
+    <Grid Width="Auto" Height="Auto">
+        <TextBlock Text="{x:Bind Path=TBText}" 
+                   TextWrapping="Wrap" 
+                   Margin="0, 10, 0, 10" 
+                   FontSize="30" 
+                   FontWeight="Bold" 
+                   Height="50"
+                   Visibility="{x:Bind Path=_RealVisibility}"/>
+
+        <TextBlock Text="{x:Bind Path=TBText}" 
+                   TextWrapping="Wrap" 
+                   VerticalAlignment="Top" 
+                   FontSize="20" 
+                   FontWeight="Bold"
+                   Height="30"
+                   Visibility="{x:Bind Path=_ControlVisibility}"
+                   />
+
+        <Button Margin="0,30,0,0" 
+                VerticalAlignment="Top" 
+                Visibility="{x:Bind Path=_ControlVisibility}" 
+                Click="_UpContent" Width="39" Height="33">
+
+            <SymbolIcon Symbol="Up" Width="15" Height="19"/>
+
+        </Button>
+
+        <Button Margin="45,30,0,0" 
+                VerticalAlignment="Top" 
+                Visibility="{x:Bind Path=ControlVisibility}"
+                Click="_DownContent">
+
+            <SymbolIcon Symbol="Download"/>
+
+        </Button>
+
+        <Button Margin="91,30,0,0" 
+                VerticalAlignment="Top" 
+                Visibility="{x:Bind Path=ControlVisibility}"
+                Click="_RemoveContent">
+
+            <SymbolIcon Symbol="Cancel"/>
+
+        </Button>
+
+    </Grid>
+</UserControl>

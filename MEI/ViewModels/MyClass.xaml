@@ -1,0 +1,63 @@
+﻿<Page
+    x:Class="MEI.UI.MyClass"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MEI.UI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50px"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50px"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBox Name="SearchQuery"
+                     HorizontalAlignment="Left" 
+                     x:Uid="SearchClass"
+                     Margin="10,11,0,0" 
+                     TextWrapping="Wrap" 
+                     Width="500" 
+                     VerticalAlignment="Top"
+                     TextChanged="SearchClass"/>
+
+            <ListView x:Name="ClassroomList" 
+                      SelectionChanged="ClassroomList_SelectionChanged" RenderTransformOrigin="0.5,0.5" 
+                      UseLayoutRounding="False" 
+                      d:LayoutRounding="Auto" Grid.Row="1">
+                <ListView.RenderTransform>
+                    <CompositeTransform SkewX="-0.043" TranslateX="0.333"/>
+                </ListView.RenderTransform>
+            </ListView>
+        </Grid>
+        <StackPanel Grid.Row="1" 
+                    Orientation="Horizontal" 
+                    Margin="0,0,0,1" >
+            <Button x:Name="editBtn"
+                    x:Uid="EditClassList"
+                    Margin="10, 5, 10, 5"
+                    Click="EditingTrigger"
+                    Tag="ctrlo"/>
+
+            <Button x:Name="addNew"
+                    x:Uid="MakeNewClassBtn"
+                    Margin="10, 5, 10, 5"
+                    Click="AddNewClass"/>
+
+            <Button x:Name="removeThat"
+                    x:Uid="RemoveClassBtn"
+                    Margin="10, 5, 10, 5"
+                    Click="RemoveClass"/>
+
+        </StackPanel>
+    </Grid>
+</Page>

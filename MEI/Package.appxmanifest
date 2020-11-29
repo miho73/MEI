@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="6f47905e-d761-4029-ac32-e5280eb1b8d2"
-    Publisher="CN=hyunc"
-    Version="1.0.0.0" />
+    Name="MukHeang"
+    Publisher="CN=Miho, O=Miho, C=KR"
+    Version="0.1.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="6f47905e-d761-4029-ac32-e5280eb1b8d2" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>MEI</DisplayName>
-    <PublisherDisplayName>hyunc</PublisherDisplayName>
+    <DisplayName>묵향</DisplayName>
+    <PublisherDisplayName>miho</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -32,12 +32,12 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="MEI.App">
       <uap:VisualElements
-        DisplayName="MEI"
+        DisplayName="묵향"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="MEI"
+        Description="향기로운 먹의 향기"
         BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\LargeTile.png" Square71x71Logo="Assets\SmallTile.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>

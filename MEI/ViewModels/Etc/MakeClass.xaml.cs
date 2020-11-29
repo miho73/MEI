@@ -6,13 +6,13 @@ namespace MEI.UI
 {
     public sealed partial class MakeClass : ContentDialog
     {
-        public MakeClass(int tailOrder)
+        public MakeClass(long tailOrder)
         {
             this.InitializeComponent();
             Order = tailOrder;
         }
 
-        private int Order { get; set; }
+        private long Order { get; set; }
         private string ClassName { get; set; }
         private string _ClassLink;
         private string ClassLink

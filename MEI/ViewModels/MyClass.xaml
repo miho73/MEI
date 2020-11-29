@@ -42,21 +42,11 @@
         <StackPanel Grid.Row="1" 
                     Orientation="Horizontal" 
                     Margin="0,0,0,1" >
-            <Button x:Name="editBtn"
-                    x:Uid="EditClassList"
-                    Margin="10, 5, 10, 5"
-                    Click="EditingTrigger"
-                    Tag="ctrlo"/>
 
             <Button x:Name="addNew"
                     x:Uid="MakeNewClassBtn"
                     Margin="10, 5, 10, 5"
                     Click="AddNewClass"/>
-
-            <Button x:Name="removeThat"
-                    x:Uid="RemoveClassBtn"
-                    Margin="10, 5, 10, 5"
-                    Click="RemoveClass"/>
 
         </StackPanel>
     </Grid>

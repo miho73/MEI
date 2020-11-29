@@ -8,6 +8,7 @@ using Windows.UI.Core;
 using System;
 using Windows.System;
 using Windows.UI.Popups;
+using HangulLib;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -45,8 +46,12 @@ namespace MEI.UI
                     Tag = element.Link,
                     TBText = element.DisTxt,
                     Margin = new Thickness(0, 0, 0, 0),
-                    ControlVisibility = Visibility.Collapsed
+                    OrderDis = element.Order,
+                    controlVisible = Visibility.Visible
                 };
+                cl.UpContent = new Action<object, RoutedEventArgs>(ClUpContent);
+                cl.DownContent = new Action<object, RoutedEventArgs>(ClDownContent);
+                cl.RemoveContent = new Action<object, RoutedEventArgs>(ClDeleteContent);
                 ClassroomList.Items.Add(cl);
             }
         }
@@ -54,71 +59,20 @@ namespace MEI.UI
         private async void ClassroomList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (ClassroomList.SelectedItem == null) return;
-            if(isRemoving)
-            {
-                //MessageDialog dialog = new MessageDialog(UIManager.Rl.GetString("ClassRemoveConfirmDialogContent"),
-                //    UIManager.Rl.GetString("ClassRemoveConfirmDialogTitle"));
-                MessageDialog dialog = new MessageDialog(UIManager.Rl.GetString("ClassRemoveConfirmDialogContent"));
-
-                dialog.Commands.Add(new UICommand(UIManager.Rl.GetString("DeleteClassConfirmMsg"), new UICommandInvokedHandler(async (IUICommand cmd) =>
-                {
-                    await classManager.RemoveData(((Classroom)ClassroomList.SelectedItem).ID);
-                })));
-                dialog.Commands.Add(new UICommand(UIManager.Rl.GetString("DeleteClassCancelMsg")));
-
-                await dialog.ShowAsync();
-                UpdateClassList();
-                return;
-            }
+                
             string link = ((Classroom)ClassroomList.SelectedItem).Tag.ToString();
             ClassroomList.SelectedItem = null;
             await Launcher.LaunchUriAsync(new Uri(link));
         }
 
-        private void EditingTrigger(object sender, RoutedEventArgs args)
-        {
-            Visibility visiChange = Visibility.Visible;
-            if (editBtn.Tag.ToString() == "ctrlo")
-            {
-                visiChange = Visibility.Visible;
-                editBtn.Tag = "ctrli";
-                editBtn.Content = UIManager.Rl.GetString("EditClassConfirm");
-            }
-            else if (editBtn.Tag.ToString() == "ctrli")
-            {
-                visiChange = Visibility.Collapsed;
-                editBtn.Tag = "ctrlo";
-                editBtn.Content = UIManager.Rl.GetString("EditClassListAlone");
-            }
-
-            foreach (object obj in ClassroomList.Items)
-            {
-                Classroom classroom = obj as Classroom;
-                classroom.ControlVisibility = visiChange;
-            }
-        }
-
         private async void AddNewClass(object sednder, RoutedEventArgs args)
         {
-            MakeClass makeClass = new MakeClass(ClassroomList.Items.Count);
+            MakeClass makeClass = new MakeClass(await classManager.GetNumberOfClasses());
             await makeClass.ShowAsync();
             UpdateClassList();
         }
 
-        private bool isRemoving = false;
-        private void RemoveClass(object sedner, RoutedEventArgs args)
-        {
-            if (isRemoving)
-            {
-                removeThat.Content = UIManager.Rl.GetString("RemoveClassBtnAlone");
-                isRemoving = false;
-            }
-            else
-            {
-                removeThat.Content = UIManager.Rl.GetString("RemoveClassConfirm");
-                isRemoving = true;
-            }
-        }
+        private Hangul hangul = new Hangul();
 
         private async void SearchClass(object sender, TextChangedEventArgs e)
         {
@@ -126,20 +80,53 @@ namespace MEI.UI
             List<ClassObj> lList = await classManager.ReadData();
             lList.Sort(ClSortFunc);
             ClassroomList.Items.Clear();
+            string Query = hangul.ReplaceHangulSeparated(SearchQuery.Text);
+            Visibility visible = Query == "" ? Visibility.Visible : Visibility.Collapsed;
             foreach (ClassObj element in lList)
             {
-                //TODO: 한글 초중종 나눠서 비교하기
-                if (!element.DisTxt.Contains(SearchQuery.Text)) continue;
+                if (!hangul.ReplaceHangulSeparated(element.DisTxt).Contains(Query)) continue;
                 Classroom cl = new Classroom()
                 {
                     ID = element.ID,
                     Tag = element.Link,
                     TBText = element.DisTxt,
                     Margin = new Thickness(0, 0, 0, 0),
-                    ControlVisibility = Visibility.Collapsed
+                    controlVisible = visible
                 };
+                cl.UpContent = new Action<object, RoutedEventArgs>(ClUpContent);
+                cl.DownContent = new Action<object, RoutedEventArgs>(ClDownContent);
+                cl.RemoveContent = new Action<object, RoutedEventArgs>(ClDeleteContent);
                 ClassroomList.Items.Add(cl);
             }
+        }
+
+        private async void ClUpContent(object sender, RoutedEventArgs args)
+        {
+            long cOrder = long.Parse(((Button)sender).Tag.ToString());
+            if (cOrder == 0) return;
+            await classManager.UpContent(cOrder);
+            UpdateClassList();
+        }
+        private async void ClDownContent(object sender, RoutedEventArgs args)
+        {
+            long cOrder = long.Parse(((Button)sender).Tag.ToString());
+            if (cOrder == await classManager.GetNumberOfClasses()-1) return;
+            await classManager.DownContent(cOrder);
+            UpdateClassList();
+        }
+        private async void ClDeleteContent(object sender, RoutedEventArgs args)
+        {
+            MessageDialog dialog = new MessageDialog(UIManager.Rl.GetString("ClassRemoveConfirmDialogContent"));
+
+            dialog.Commands.Add(new UICommand(UIManager.Rl.GetString("DeleteClassConfirmMsg"), new UICommandInvokedHandler(async (IUICommand cmd) =>
+            {
+                await classManager.RemoveData(int.Parse(((Button)sender).Tag.ToString()));
+            })));
+            dialog.Commands.Add(new UICommand(UIManager.Rl.GetString("DeleteClassCancelMsg")));
+
+            await dialog.ShowAsync();
+            UpdateClassList();
+            return;
         }
     }
 }

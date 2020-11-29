@@ -40,9 +40,11 @@ namespace MEI.UI
                     break;
                 case "todo":
                     NavView.Header = UIManager.Rl.GetString("NavHeaderTODO");
+                    ContentFrame.Navigate(typeof(TODO));
                     break;
                 case "schedule":
                     NavView.Header = UIManager.Rl.GetString("NavHeaderSchedule");
+                    ContentFrame.Navigate(typeof(Sche));
                     break;
             }
         }

@@ -15,21 +15,8 @@ namespace MEI.UI
 
         public string TBText { get; set; }
         public long ID { get; set; }
-        //THESE WILL NOT BE USED.
-        private Visibility _ControlVisibility;
-        private Visibility _RealVisibility;
-        public Visibility ControlVisibility
-        {
-            get
-            {
-                return _ControlVisibility;
-            }
-            set
-            {
-                _ControlVisibility = value;
-                _RealVisibility = value == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
-            }
-        }
+        public long OrderDis { get; set; }
+        public Visibility controlVisible { get; set; }
 
         public void _UpContent(object sender, RoutedEventArgs args)
         {

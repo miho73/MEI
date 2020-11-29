@@ -1,0 +1,2 @@
+MainPackage=C:\Users\hyunc\source\repos\MEI\MEI\bin\x86\Release\MEI_0.1.0.0_x86.msix
+SymbolPackage=C:\Users\hyunc\source\repos\MEI\MEI\obj\x86\Release\Symbols\MEI_0.1.0.0_x86.appxsym

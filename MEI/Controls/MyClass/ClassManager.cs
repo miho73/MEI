@@ -30,7 +30,7 @@ namespace MEI.Controls.MyClass
                     "(ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
                     "OrderDis INTEGER NOT NULL," +
                     "DisTxt Text NOT NULL," +
-                    "Link Text NOT NULL)";
+                    "Link Text NOT NULL);";
                 SqliteCommand createTable = new SqliteCommand(tableCommand, db);
                 await createTable.ExecuteNonQueryAsync();
             }
@@ -61,9 +61,10 @@ namespace MEI.Controls.MyClass
             using (SqliteConnection db = new SqliteConnection($"Filename={dbpath}"))
             {
                 await db.OpenAsync();
-                SqliteCommand insertCommand = new SqliteCommand("DELETE FROM Classroom WHERE ID=" + id, db);
+                SqliteCommand delCommand = new SqliteCommand("DELETE FROM Classroom WHERE ID=@DID", db);
+                delCommand.Parameters.AddWithValue("@DID", id);
 
-                await insertCommand.ExecuteNonQueryAsync();
+                await delCommand.ExecuteNonQueryAsync();
             }
         }
 
@@ -91,6 +92,63 @@ namespace MEI.Controls.MyClass
                 }
             }
             return entries;
+        }
+
+        public async Task UpContent(long currentOrder)
+        {
+            string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, DB_FILE);
+            using (SqliteConnection db = new SqliteConnection($"Filename={dbpath}"))
+            {
+                await db.OpenAsync();
+                SqliteTransaction transaction = db.BeginTransaction();
+
+                SqliteCommand cmd = new SqliteCommand(
+                    "UPDATE Classroom SET OrderDis = -1 WHERE OrderDis=@CurrentOrder-1;" +
+                    "UPDATE Classroom SET OrderDis = OrderDis-1 WHERE OrderDis=@CurrentOrder;" +
+                    "UPDATE Classroom SET OrderDis = @CurrentOrder WHERE OrderDis=-1;",
+                    db, transaction);
+                cmd.Parameters.AddWithValue("@CurrentOrder", currentOrder);
+                await cmd.ExecuteNonQueryAsync();
+
+                transaction.Commit();
+            }
+        }
+
+        public async Task DownContent(long currentOrder)
+        {
+            string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, DB_FILE);
+            using (SqliteConnection db = new SqliteConnection($"Filename={dbpath}"))
+            {
+                await db.OpenAsync();
+                SqliteTransaction transaction = db.BeginTransaction();
+
+                SqliteCommand cmd = new SqliteCommand(
+                    "UPDATE Classroom SET OrderDis = -1 WHERE OrderDis=@CurrentOrder+1;" +
+                    "UPDATE Classroom SET OrderDis = OrderDis+1 WHERE OrderDis=@CurrentOrder;" +
+                    "UPDATE Classroom SET OrderDis = @CurrentOrder WHERE OrderDis=-1;",
+                    db, transaction);
+                cmd.Parameters.AddWithValue("@CurrentOrder", currentOrder);
+                await cmd.ExecuteNonQueryAsync();
+
+                transaction.Commit();
+            }
+        }
+
+        public async Task<long> GetNumberOfClasses()
+        {
+            long ret = -1;
+            string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, DB_FILE);
+            using (SqliteConnection db = new SqliteConnection($"Filename={dbpath}"))
+            {
+                await db.OpenAsync();
+                SqliteCommand cmd = new SqliteCommand("SELECT count(*) FROM Classroom;", db);
+                SqliteDataReader reader =  await cmd.ExecuteReaderAsync();
+                while(await reader.ReadAsync())
+                {
+                    ret = long.Parse(reader["count(*)"].ToString());
+                }
+            }
+            return ret;
         }
     }
 }

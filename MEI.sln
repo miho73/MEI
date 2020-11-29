@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MEI", "MEI\MEI.csproj", "{57DC2238-0848-4186-AC74-5BA81C2F8E12}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangulLib", "HangulLib\HangulLib.csproj", "{63D5B997-DC1F-47CE-944D-83DF076E5806}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,26 @@ Global
 		{57DC2238-0848-4186-AC74-5BA81C2F8E12}.Release|x86.ActiveCfg = Release|x86
 		{57DC2238-0848-4186-AC74-5BA81C2F8E12}.Release|x86.Build.0 = Release|x86
 		{57DC2238-0848-4186-AC74-5BA81C2F8E12}.Release|x86.Deploy.0 = Release|x86
+		{63D5B997-DC1F-47CE-944D-83DF076E5806}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63D5B997-DC1F-47CE-944D-83DF076E5806}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63D5B997-DC1F-47CE-944D-83DF076E5806}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{63D5B997-DC1F-47CE-944D-83DF076E5806}.Debug|ARM.Build.0 = Debug|Any CPU
+		{63D5B997-DC1F-47CE-944D-83DF076E5806}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{63D5B997-DC1F-47CE-944D-83DF076E5806}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{63D5B997-DC1F-47CE-944D-83DF076E5806}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{63D5B997-DC1F-47CE-944D-83DF076E5806}.Debug|x64.Build.0 = Debug|Any CPU
+		{63D5B997-DC1F-47CE-944D-83DF076E5806}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{63D5B997-DC1F-47CE-944D-83DF076E5806}.Debug|x86.Build.0 = Debug|Any CPU
+		{63D5B997-DC1F-47CE-944D-83DF076E5806}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63D5B997-DC1F-47CE-944D-83DF076E5806}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63D5B997-DC1F-47CE-944D-83DF076E5806}.Release|ARM.ActiveCfg = Release|Any CPU
+		{63D5B997-DC1F-47CE-944D-83DF076E5806}.Release|ARM.Build.0 = Release|Any CPU
+		{63D5B997-DC1F-47CE-944D-83DF076E5806}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{63D5B997-DC1F-47CE-944D-83DF076E5806}.Release|ARM64.Build.0 = Release|Any CPU
+		{63D5B997-DC1F-47CE-944D-83DF076E5806}.Release|x64.ActiveCfg = Release|Any CPU
+		{63D5B997-DC1F-47CE-944D-83DF076E5806}.Release|x64.Build.0 = Release|Any CPU
+		{63D5B997-DC1F-47CE-944D-83DF076E5806}.Release|x86.ActiveCfg = Release|Any CPU
+		{63D5B997-DC1F-47CE-944D-83DF076E5806}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

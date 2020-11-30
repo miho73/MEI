@@ -25,11 +25,13 @@
                 </NavigationViewItem>
                 <NavigationViewItemSeparator Opacity="0"/>
                 <NavigationViewItemHeader x:Uid="NavViewAssistanceSection"/>
+                <!--
                 <NavigationViewItem x:Uid="NavViewTodoItem" Tag="todo">
                     <NavigationViewItem.Icon>
                         <SymbolIcon Symbol="Bullets"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
+                -->
                 <NavigationViewItem x:Uid="NavViewScheduler" Tag="schedule">
                     <NavigationViewItem.Icon>
                         <SymbolIcon Symbol="Calendar"/>

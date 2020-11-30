@@ -25,7 +25,6 @@ namespace MEI.UI
             await sManager.InitDB();
             DateTimeOffset Date = DateTimeOffset.Now;
             if (DateSel.SelectedDates.Count > 0) Date = DateSel.SelectedDates[0];
-            else return;
             string format = Date.ToString("yyyy/MM/dd");
             List<ScheData> sches = await sManager.GetSche(format);
             DateDisplay.Text = Date.ToString("yyyy/MM/dd dddd");

@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="MukHeang"
+    Name="Miho.MukHeang"
     Publisher="CN=Miho, O=Miho, C=KR"
-    Version="0.1.0.0" />
+    Version="0.1.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="6f47905e-d761-4029-ac32-e5280eb1b8d2" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>묵향</DisplayName>
-    <PublisherDisplayName>miho</PublisherDisplayName>
+    <PublisherDisplayName>Miho</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -44,6 +44,5 @@
   </Applications>
 
   <Capabilities>
-    <Capability Name="internetClient" />
-  </Capabilities>
+    <Capability Name="internetClient"/></Capabilities>
 </Package>

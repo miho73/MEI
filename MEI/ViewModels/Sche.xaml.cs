@@ -84,6 +84,7 @@ namespace MEI.UI
             {
                 if (ed.Tag.ToString() == "MkNew")
                 {
+                    if (DateSel.SelectedDates.Count < 1) return;
                     MakeSche makeSche = new MakeSche(DateSel.SelectedDates[0]);
                     await makeSche.ShowAsync();
                     UpdateList();

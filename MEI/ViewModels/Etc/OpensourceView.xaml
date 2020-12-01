@@ -1,0 +1,55 @@
+﻿<ContentDialog
+    x:Class="MEI.UI.OpensourceView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MEI.UI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Uid="OpensourceNoticeTitle">
+
+    <ContentDialog.Resources>
+        <Style x:Key="title" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+
+        <Style x:Key="href" TargetType="HyperlinkButton">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Margin" Value="10, 0, 0, 0"/>
+            <Setter Property="Padding" Value="2,0,2,0"/>
+        </Style>
+
+        <Style x:Key="content" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Margin" Value="10, 0, 0, 0"/>
+        </Style>
+    </ContentDialog.Resources>
+    
+    <Grid>
+        <ScrollViewer>
+            <StackPanel>
+                <StackPanel Margin="0 0 0 5">
+                    <TextBlock Text="Microsoft.Data.Sqlite" Style="{StaticResource title}"/>
+                    <HyperlinkButton Content="View License" Style="{StaticResource href}"
+                                     NavigateUri="https://licenses.nuget.org/Apache-2.0"/>
+                    <TextBlock Text="Microsoft, Apache-2.0" Style="{StaticResource content}"/>
+                </StackPanel>
+
+                <StackPanel Margin="0 0 0 5">
+                    <TextBlock Text="Newtonsoft.Json" Style="{StaticResource title}"/>
+                    <HyperlinkButton Content="View License" Style="{StaticResource href}"
+                                     NavigateUri="https://licenses.nuget.org/MIT"/>
+                    <TextBlock Text="James Newton-King, MIT" Style="{StaticResource content}"/>
+                </StackPanel>
+
+                <StackPanel>
+                    <TextBlock Text="Microsoft.NETCore.UniversalWindowsPlatform" Style="{StaticResource title}"/>
+                    <HyperlinkButton Content="View License" Style="{StaticResource href}"
+                                     NavigateUri="https://github.com/Microsoft/dotnet/blob/master/releases/UWP/LICENSE.TXT"/>
+                    <TextBlock Text="Microsoft" Style="{StaticResource content}"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>    
+    </Grid>
+</ContentDialog>

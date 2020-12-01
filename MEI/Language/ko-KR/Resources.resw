@@ -135,8 +135,14 @@
   <data name="DeleteClassConfirmMsg" xml:space="preserve">
     <value>확인</value>
   </data>
+  <data name="Developer.Text" xml:space="preserve">
+    <value>개발 참여: 미호(Miho)</value>
+  </data>
   <data name="ExportDataFileSelectionCommit" xml:space="preserve">
     <value>내보내기</value>
+  </data>
+  <data name="GoToGithub.Content" xml:space="preserve">
+    <value>묵향 GitHub 가기</value>
   </data>
   <data name="LoadDataFileSelectionCommit" xml:space="preserve">
     <value>열기</value>
@@ -195,6 +201,15 @@
   <data name="NavViewTodoItem.Content" xml:space="preserve">
     <value>TODO</value>
   </data>
+  <data name="OpenSourceNoteOpen.Content" xml:space="preserve">
+    <value>오픈소스 알림</value>
+  </data>
+  <data name="OpensourceNoticeTitle.PrimaryButtonText" xml:space="preserve">
+    <value>닫기</value>
+  </data>
+  <data name="OpensourceNoticeTitle.Title" xml:space="preserve">
+    <value>오픈소스 알림</value>
+  </data>
   <data name="ScheDatePlaceholder.Text" xml:space="preserve">
     <value>날짜를 선택하세요.</value>
   </data>
@@ -222,6 +237,9 @@
   </data>
   <data name="SettingDataLoadSaveSaveData.Content" xml:space="preserve">
     <value>데이터 내보내기</value>
+  </data>
+  <data name="SettingGeneralInfo.Text" xml:space="preserve">
+    <value>일반</value>
   </data>
   <data name="SettingResetData.Text" xml:space="preserve">
     <value>데이터 초기화</value>
@@ -262,5 +280,8 @@
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>설정</value>
+  </data>
+  <data name="Version.Text" xml:space="preserve">
+    <value>버전: Alpha 0.1.2a</value>
   </data>
 </root>

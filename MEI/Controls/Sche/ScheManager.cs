@@ -54,7 +54,6 @@ namespace MEI.Controls.Sche
 
                 while (await query.ReadAsync())
                 {
-                    Debug.WriteLine(query["Date"].ToString());
                     ScheData Lobj = new ScheData()
                     {
                         ID = (long)query["ID"],
@@ -138,7 +137,7 @@ namespace MEI.Controls.Sche
         }
         public async Task Clear()
         {
-            await ExecuteNonQuery("DROP TABLE sche;");
+            await ExecuteNonQuery("DROP TABLE IF EXISTS sche;");
         }
 
         //TODO: Replace all execution as this func

@@ -20,7 +20,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            
+
             <TextBox Name="SearchQuery"
                      HorizontalAlignment="Left" 
                      x:Uid="SearchClass"

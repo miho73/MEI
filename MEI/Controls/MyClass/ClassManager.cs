@@ -23,7 +23,6 @@ namespace MEI.Controls.MyClass
         {
             await ApplicationData.Current.LocalFolder.CreateFileAsync(DB_FILE, CreationCollisionOption.OpenIfExists);
             string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, DB_FILE);
-            Debug.WriteLine(dbpath);
             using (SqliteConnection db = new SqliteConnection($"Filename={dbpath}"))
             {
                 await db.OpenAsync();
@@ -169,7 +168,7 @@ namespace MEI.Controls.MyClass
         }
         public async Task Clear()
         {
-            await ExecuteNonQuery("DROP TABLE Classroom;");
+            await ExecuteNonQuery("DROP TABLE IF EXISTS Classroom;");
         }
 
         //TODO: Replace all execution as this func

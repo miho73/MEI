@@ -96,11 +96,16 @@ namespace MEI.UI
                     await cManager.Clear();
                 } catch
                 {
-                    //Nerver mind
                 }
             })));
             dialog.Commands.Add(new UICommand(UIManager.Rl.GetString("SettingResetDataWarningCancel")));
             await dialog.ShowAsync();
+        }
+
+        public async void OpenSourceNotice(object sender, RoutedEventArgs args)
+        {
+            OpensourceView ocv = new OpensourceView();
+            await ocv.ShowAsync();
         }
     }
 }

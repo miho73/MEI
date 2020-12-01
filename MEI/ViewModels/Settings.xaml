@@ -49,54 +49,99 @@
             <Setter Property="Margin" Value="30, 5, 0, 0"/>
         </Style>
 
+        <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Height" Value="Auto"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Margin" Value="30, 0, 0, 0"/>
+        </Style>
+
+        <Style x:Key="HyperLinkStyle" TargetType="HyperlinkButton">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Height" Value="Auto"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Margin" Value="30, 0, 0, 0"/>
+            <Setter Property="Padding" Value="2,3,2,3"/>
+        </Style>
+
         <Style x:Key="GroupStack" TargetType="StackPanel">
             <Setter Property="Padding" Value="0 3 0 3"/>
         </Style>
+
+        <Style x:Key="SectionStack" TargetType="StackPanel">
+            <Setter Property="Padding" Value="0 5 0 5"/>
+        </Style>
+        
     </Page.Resources>
 
-    <Grid>
-        <StackPanel VerticalAlignment="Top">
-            <TextBlock x:Uid="SettingsDataSection" 
+    <ScrollViewer>
+        <StackPanel>
+            <StackPanel Style="{StaticResource SectionStack}">
+                <TextBlock x:Uid="SettingsDataSection" 
                        Style="{StaticResource SectionTitle}"/>
-            
-            <StackPanel Style="{StaticResource GroupStack}">
 
-                <TextBlock x:Uid="SettingDataLoadSaveGrpHeader"
+                <StackPanel Style="{StaticResource GroupStack}">
+
+                    <TextBlock x:Uid="SettingDataLoadSaveGrpHeader"
                        Style="{StaticResource GroupHeader}"/>
 
-                <TextBlock x:Uid="SettingsDataLoadSaveCaption" 
+                    <TextBlock x:Uid="SettingsDataLoadSaveCaption" 
                        Style="{StaticResource Caption}"/>
 
-                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal">
 
-                    <Button x:Uid="SettingDataLoadSaveLoadData"
+                        <Button x:Uid="SettingDataLoadSaveLoadData"
                         Style="{StaticResource ButtonStyle}"
                         Click="LoadSettings"/>
 
-                    <Button x:Uid="SettingDataLoadSaveSaveData"
+                        <Button x:Uid="SettingDataLoadSaveSaveData"
                         Style="{StaticResource ButtonStyle}"
                         Click="ExportData"/>
 
-                </StackPanel>
+                    </StackPanel>
 
-                <TextBlock Name="SaveLoadResult"
+                    <TextBlock Name="SaveLoadResult"
                        FontSize="15" 
                        HorizontalAlignment="Left"
                        Margin="30,0,0,0"
                        FontWeight="SemiBold"/>
-            </StackPanel>
+                </StackPanel>
 
-            <StackPanel Style="{StaticResource GroupStack}">
-                <TextBlock x:Uid="SettingResetData"
+                <StackPanel Style="{StaticResource GroupStack}">
+                    <TextBlock x:Uid="SettingResetData"
                            Style="{StaticResource GroupHeader}"/>
 
-                <TextBlock x:Uid="SettingResetDataExp"
+                    <TextBlock x:Uid="SettingResetDataExp"
                            Style="{StaticResource Caption}"/>
 
-                <Button x:Uid="SettingsResetBtn"
+                    <Button x:Uid="SettingsResetBtn"
                         Style="{StaticResource ButtonStyle}"
                         Click="ResetData"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Style="{StaticResource SectionStack}">
+                <TextBlock x:Uid="SettingGeneralInfo" 
+                       Style="{StaticResource SectionTitle}"/>
+
+                <TextBlock x:Uid="Version" 
+                       Style="{StaticResource TextBlockStyle}"/>
+
+                <TextBlock x:Uid="Developer"
+                       Style="{StaticResource TextBlockStyle}"/>
+
+                <HyperlinkButton x:Uid="GoToGithub"
+                             NavigateUri="https://github.com/miho73/MukHeang"
+                             Style="{StaticResource HyperLinkStyle}"/>
+
+                <HyperlinkButton x:Uid="OpenSourceNoteOpen"
+                                 Click="OpenSourceNotice"
+                                 Style="{StaticResource HyperLinkStyle}"/>
             </StackPanel>
         </StackPanel>
-    </Grid>
+    </ScrollViewer>
 </Page>

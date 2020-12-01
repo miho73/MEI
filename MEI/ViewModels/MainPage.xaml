@@ -15,7 +15,8 @@
     <Grid>
         <NavigationView Name="NavView" 
                         IsBackButtonVisible="Collapsed" 
-                        SelectionChanged="NavigationView_SelectionChanged">
+                        SelectionChanged="NavigationView_SelectionChanged"
+                        IsPaneToggleButtonVisible="False">
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader x:Uid="NavViewOnlineClassSection"/>
                 <NavigationViewItem x:Uid="NavViewMyClassItem" Tag="class">

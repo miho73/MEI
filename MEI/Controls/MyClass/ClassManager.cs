@@ -18,7 +18,7 @@ namespace MEI.Controls.MyClass
 
     public class ClassManager
     {
-        private readonly string DB_FILE = "classroom.db";
+        public static readonly string DB_FILE = "classroom.db";
         public async Task InitDB()
         {
             await ApplicationData.Current.LocalFolder.CreateFileAsync(DB_FILE, CreationCollisionOption.OpenIfExists);
@@ -37,7 +37,7 @@ namespace MEI.Controls.MyClass
             }
         }
 
-        public async void AddData(ClassObj obj)
+        public async Task AddData(ClassObj obj)
         {
             string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, DB_FILE);
             using (SqliteConnection db = new SqliteConnection($"Filename={dbpath}"))
@@ -54,6 +54,17 @@ namespace MEI.Controls.MyClass
                 insertCommand.CommandText = command;
                 await insertCommand.ExecuteNonQueryAsync();
             }
+        }
+        public async Task AddData(ClassObj obj, SqliteConnection db, SqliteTransaction trans)
+        {
+            await db.OpenAsync();
+            string command = "INSERT INTO Classroom (OrderDis, DisTxt, Link) VALUES (@Order, @DisTxt, @Link);";
+
+            SqliteCommand insertCommand = new SqliteCommand(command, db, trans);
+            insertCommand.Parameters.AddWithValue("@Order", obj.Order);
+            insertCommand.Parameters.AddWithValue("@DisTxt", obj.DisTxt);
+            insertCommand.Parameters.AddWithValue("@Link", obj.Link);
+            await insertCommand.ExecuteNonQueryAsync();
         }
 
         public async Task RemoveData(long id)
@@ -150,6 +161,33 @@ namespace MEI.Controls.MyClass
                 }
             }
             return ret;
+        }
+
+        public async Task Clear(SqliteConnection db, SqliteTransaction trans)
+        {
+            await ExecuteNonQuery("DELETE FROM Classroom;", db, trans);
+        }
+        public async Task Clear()
+        {
+            await ExecuteNonQuery("DROP TABLE Classroom;");
+        }
+
+        //TODO: Replace all execution as this func
+        public async Task ExecuteNonQuery(string cmd)
+        {
+            string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, DB_FILE);
+            using (SqliteConnection db = new SqliteConnection($"Filename={dbpath}"))
+            {
+                await db.OpenAsync();
+                SqliteCommand command = new SqliteCommand(cmd, db);
+                await command.ExecuteNonQueryAsync();
+            }
+        }
+        public async Task ExecuteNonQuery(string cmd, SqliteConnection db, SqliteTransaction trans)
+        {
+            await db.OpenAsync();
+            SqliteCommand command = new SqliteCommand(cmd, db, trans);
+            await command.ExecuteNonQueryAsync();
         }
     }
 }

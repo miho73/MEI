@@ -19,7 +19,7 @@ namespace MEI.Controls.Sche
 
     public class ScheManager
     {
-        private readonly string DB_FILE = "schedules.db";
+        public static readonly string DB_FILE = "schedules.db";
         public async Task InitDB()
         {
             await ExecuteCmd("CREATE TABLE IF NOT EXISTS sche " +
@@ -68,6 +68,33 @@ namespace MEI.Controls.Sche
             return entries;
         }
 
+        public async Task<List<ScheData>> ReadData()
+        {
+            List<ScheData> entries = new List<ScheData>();
+
+            string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, DB_FILE);
+            using (SqliteConnection db = new SqliteConnection($"Filename={dbpath}"))
+            {
+                db.Open();
+                SqliteCommand selectCommand = new SqliteCommand("SELECT * FROM sche", db);
+                SqliteDataReader query = await selectCommand.ExecuteReaderAsync();
+
+                while (await query.ReadAsync())
+                {
+                    Debug.WriteLine(query["Date"].ToString());
+                    ScheData Lobj = new ScheData()
+                    {
+                        ID = (long)query["ID"],
+                        Content = query["Content"].ToString(),
+                        Complete = (long)query["Complete"] == 1,
+                        Time = DateTimeOffset.ParseExact(query["Date"].ToString(), "yyyy/MM/dd", new CultureInfo("ko-KR"))
+                    };
+                    entries.Add(Lobj);
+                }
+            }
+            return entries;
+        }
+
         public async Task Insert(ScheData data)
         {
             string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, DB_FILE);
@@ -82,6 +109,15 @@ namespace MEI.Controls.Sche
                 await insert.ExecuteNonQueryAsync();
             }
         }
+        public async Task Insert(ScheData data, SqliteConnection db, SqliteTransaction trans)
+        {
+            SqliteCommand insert = new SqliteCommand(
+                "INSERT INTO sche (Content, Complete, Date) VALUES (@Cont, @Comp, @Date)", db, trans);
+            insert.Parameters.AddWithValue("@Cont", data.Content);
+            insert.Parameters.AddWithValue("@Comp", (data.Complete ? 1 : 0));
+            insert.Parameters.AddWithValue("@Date", data.Time.ToString("yyyy/MM/dd"));
+            await insert.ExecuteNonQueryAsync();
+        }
 
         public async Task ChangeComplete(long id)
         {
@@ -94,6 +130,33 @@ namespace MEI.Controls.Sche
                 cmd.Parameters.AddWithValue("@id", id);
                 await cmd.ExecuteNonQueryAsync();
             }
+        }
+
+        public async Task Clear(SqliteConnection db, SqliteTransaction trans)
+        {
+            await ExecuteNonQuery("DELETE FROM sche;", db, trans);
+        }
+        public async Task Clear()
+        {
+            await ExecuteNonQuery("DROP TABLE sche;");
+        }
+
+        //TODO: Replace all execution as this func
+        public async Task ExecuteNonQuery(string cmd)
+        {
+            string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, DB_FILE);
+            using (SqliteConnection db = new SqliteConnection($"Filename={dbpath}"))
+            {
+                await db.OpenAsync();
+                SqliteCommand command = new SqliteCommand(cmd, db);
+                await command.ExecuteNonQueryAsync();
+            }
+        }
+        public async Task ExecuteNonQuery(string cmd, SqliteConnection db, SqliteTransaction trans)
+        {
+            await db.OpenAsync();
+            SqliteCommand command = new SqliteCommand(cmd, db, trans);
+            await command.ExecuteNonQueryAsync();
         }
     }
 }

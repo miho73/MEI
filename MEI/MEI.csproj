@@ -130,6 +130,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\DBCtrl\SaveExportData.cs" />
     <Compile Include="Controls\MyClass\ClassManager.cs" />
     <Compile Include="Controls\Sche\ScheManager.cs" />
     <Compile Include="Controls\UIManager.cs" />
@@ -145,6 +146,9 @@
     </Compile>
     <Compile Include="ViewModels\Sche.xaml.cs">
       <DependentUpon>Sche.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\TODO.xaml.cs">
       <DependentUpon>TODO.xaml</DependentUpon>
@@ -239,6 +243,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ViewModels\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ViewModels\TODO.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -262,6 +270,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.10</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

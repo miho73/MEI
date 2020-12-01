@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Linq;
 using Windows.UI.Xaml.Controls;
-using MEI.Controls.MyClass;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace MEI.UI
 {
@@ -29,6 +24,13 @@ namespace MEI.UI
             if (args is null)
             {
                 throw new ArgumentNullException(nameof(args));
+            }
+
+            if((args.SelectedItem as NavigationViewItem).Tag == null)
+            {
+                NavView.Header = UIManager.Rl.GetString("SettingsTitle");
+                ContentFrame.Navigate(typeof(Settings));
+                return;
             }
 
             string item = (args.SelectedItem as NavigationViewItem).Tag.ToString();

@@ -1,6 +1,6 @@
-MainPackage=C:\Users\hyunc\source\repos\MEI\MEI\bin\x64\Release\MEI_0.1.2.0_x64.msix
-SymbolPackage=C:\Users\hyunc\source\repos\MEI\MEI\obj\x64\Release\Symbols\MEI_0.1.2.0_x64.appxsym
-ResourcePack=C:\Users\hyunc\source\repos\MEI\MEI\bin\x64\Release\MEI_0.1.2.0_scale-100.msix
-ResourcePack=C:\Users\hyunc\source\repos\MEI\MEI\bin\x64\Release\MEI_0.1.2.0_scale-125.msix
-ResourcePack=C:\Users\hyunc\source\repos\MEI\MEI\bin\x64\Release\MEI_0.1.2.0_scale-150.msix
-ResourcePack=C:\Users\hyunc\source\repos\MEI\MEI\bin\x64\Release\MEI_0.1.2.0_scale-400.msix
+MainPackage=C:\Users\hyunc\source\repos\MEI\MEI\bin\x64\Release\MEI_1.0.0.0_x64.msix
+SymbolPackage=C:\Users\hyunc\source\repos\MEI\MEI\obj\x64\Release\Symbols\MEI_1.0.0.0_x64.appxsym
+ResourcePack=C:\Users\hyunc\source\repos\MEI\MEI\bin\x64\Release\MEI_1.0.0.0_scale-100.msix
+ResourcePack=C:\Users\hyunc\source\repos\MEI\MEI\bin\x64\Release\MEI_1.0.0.0_scale-125.msix
+ResourcePack=C:\Users\hyunc\source\repos\MEI\MEI\bin\x64\Release\MEI_1.0.0.0_scale-150.msix
+ResourcePack=C:\Users\hyunc\source\repos\MEI\MEI\bin\x64\Release\MEI_1.0.0.0_scale-400.msix

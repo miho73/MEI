@@ -282,6 +282,6 @@
     <value>설정</value>
   </data>
   <data name="Version.Text" xml:space="preserve">
-    <value>버전: Alpha 0.1.2a</value>
+    <value>버전: Release 1.0.0</value>
   </data>
 </root>

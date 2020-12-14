@@ -42,7 +42,7 @@
         </Button>
 
         <Button Margin="0,0,1,0" 
-                Click="_RemoveContent"
+                Click="_RemoveContent" 
                 HorizontalAlignment="Right" 
                 Width="39" 
                 Height="32"
@@ -50,7 +50,6 @@
                 Visibility="{x:Bind Path=controlVisible}">
 
             <SymbolIcon Symbol="Cancel"/>
-
         </Button>
 
     </Grid>

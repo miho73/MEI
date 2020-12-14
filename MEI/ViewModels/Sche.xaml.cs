@@ -76,17 +76,24 @@ namespace MEI.UI
             UpdateList();
         }
 
+        private long LastSel = -1;
         private async void ScheList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Control ed = ScheList.SelectedItem as Control;
-            if (ed == null) return;
-            if(ed.Tag != null)
+            if (!(ScheList.SelectedItem is Control ed)) return;
+            if (ed.Tag != null)
             {
                 if (ed.Tag.ToString() == "MkNew")
                 {
-                    if (DateSel.SelectedDates.Count < 1) return;
-                    MakeSche makeSche = new MakeSche(DateSel.SelectedDates[0]);
-                    await makeSche.ShowAsync();
+                    if (DateSel.SelectedDates.Count < 1)
+                    {
+                        MakeSche makeSche = new MakeSche(DateTimeOffset.Now);
+                        await makeSche.ShowAsync();
+                    }
+                    else
+                    {
+                        MakeSche makeSche = new MakeSche(DateSel.SelectedDates[0]);
+                        await makeSche.ShowAsync();
+                    }
                     UpdateList();
                 }
             }

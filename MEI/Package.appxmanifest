@@ -9,7 +9,7 @@
   <Identity
     Name="Miho.MukHeang"
     Publisher="CN=Miho, O=Miho, C=KR"
-    Version="0.1.2.0" />
+    Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="6f47905e-d761-4029-ac32-e5280eb1b8d2" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
